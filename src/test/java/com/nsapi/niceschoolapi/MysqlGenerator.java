@@ -123,7 +123,7 @@ public class MysqlGenerator {
                 // .setEntity("...");
                 // .setMapper("...");
                 // .setXml("...");
-                // .setService("...");
+                // .setService("...");·
                 // .setServiceImpl("...");
         )*/;
 
