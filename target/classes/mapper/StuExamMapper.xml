@@ -16,13 +16,14 @@
         select * from classinfo where gid=#{gid}
     </select>
     <select id="selScs" parameterType="com.nsapi.niceschoolapi.entity.StuExamVO" resultType="com.nsapi.niceschoolapi.entity.StuExamVO">
-        select ci.classname,ci.classid,s.sname,c.cname,s.sid,sc.scid, sex.normalexam,sex.testexam,sex.sumexam,sex.stime from stu_course sc,student s,course c,classinfo ci,tch_course thc,stu_exam sex
-        where sc.sid=s.sid
-        and  s.sid = sex.sid
-        and c.cid=sc.cid
-        and ci.classid=s.classid
-        and c.cid=thc.cid
-        and thc.tid=#{tid}
+        select ci.classname,ci.classid,s.sname,c.cname,s.sid,sc.scid, sex.normalexam,sex.testexam,sex.sumexam,sex.stime from  stu_course sc LEFT JOIN
+        student s on sc.sid = s.sid  LEFT JOIN
+        course c on c.cid = sc.cid  LEFT JOIN
+        classinfo ci on  ci.classid = s.classid  LEFT JOIN
+        tch_course thc on c.cid = thc.cid  LEFT JOIN
+        stu_exam sex on s.sid = sex.sid
+        where
+         thc.tid=#{tid}
         <if test="classid!=null">
         and  ci.classid =#{classid}
         </if>

@@ -20,18 +20,18 @@ public class courseController {
     private com.nsapi.niceschoolapi.service.courselService courselService;
 
     @RequestMapping("selCou")
-    public String selCourse(){
-       // System.out.println("---------------------------------------------------------------------------------------------------------------");
+    public String selCourse() {
+        // System.out.println("---------------------------------------------------------------------------------------------------------------");
         return "selCou";
     }
+
     @RequestMapping("sel")
     @ResponseBody
-   public Object sel(Integer page, Integer limit, coursel coursel, String cname){
+    public Object sel(Integer page, Integer limit, coursel coursel, String cname) {
 
         coursel.setCname(cname);
         PageHelper.startPage(page, limit);
         List<com.nsapi.niceschoolapi.entity.coursel> cs = courselService.selCourse(coursel);
-
 
 
         PageInfo pageInfo = new PageInfo(cs);
@@ -48,56 +48,59 @@ public class courseController {
     }
 
 
-
     @RequestMapping("selJson")
     @ResponseBody
-    public Object selJson(){
-        List<MajorDB> major  =courselService.selJson();
+    public Object selJson() {
+        List<MajorDB> major = courselService.selJson();
         return major;
     }
+
     @RequestMapping("selCoutu")
     @ResponseBody
-    public Object selCoutu(){
-        List<CourseTypeDB> coursetype=courselService.selCoutu();
+    public Object selCoutu() {
+        List<CourseTypeDB> coursetype = courselService.selCoutu();
 
         return coursetype;
     }
+
     @RequestMapping("update")
     @ResponseBody
-    public Object update(coursel coursel){
-         int update = courselService.update(coursel);
-        if(update==1){
+    public Object update(coursel coursel) {
+        int update = courselService.update(coursel);
+        if (update == 1) {
             return "修改成功";
-        }else{
+        } else {
             return "修改失败";
         }
 
     }
+
     @RequestMapping("addcou")
     @ResponseBody
-    public Object addcou(coursel coursel){
+    public Object addcou(coursel coursel) {
         int addcou = courselService.addcou(coursel);
-        if(addcou==1){
+        if (addcou == 1) {
             return "添加成功";
-        }else{
+        } else {
             return "添加失败";
         }
 
     }
+
     @RequestMapping("delcou")
     @ResponseBody
-    public Object delcou(Integer cid){
+    public Object delcou(Integer cid) {
 
         int delercou = courselService.delercou(cid);
         //System.out.println(delercou);
-        if(delercou>0){
+        if (delercou > 0) {
             return "✖  该课程有人在读不可删除";
-        }else {
+        } else {
             int add = courselService.delcou(cid);
-            if(add==1){
+            if (add == 1) {
                 //return sys.succ;
                 return "删除成功";
-            }else{
+            } else {
                 return "删除失败";
             }
         }
@@ -106,11 +109,11 @@ public class courseController {
 
     @RequestMapping("hfcou")
     @ResponseBody
-    public Object hfcou(Integer cid){
+    public Object hfcou(Integer cid) {
         int add = courselService.hfcou(cid);
-        if(add==1){
+        if (add == 1) {
             return "恢复成功";
-        }else{
+        } else {
             return "恢复失败";
         }
     }

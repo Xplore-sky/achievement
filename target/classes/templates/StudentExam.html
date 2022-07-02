@@ -194,6 +194,8 @@
                             return '大三上学期'
                         }else if (data.stime =='6'){
                             return '大三下学期'
+                        }else{
+                            return ''
                         }
                     }}
                     ,{field: 'normalexam', title: '平时成绩'}
@@ -203,7 +205,7 @@
                         if (!data.sumexam || parseFloat(data.sumexam)==0){
                             return '未录入成绩';
                         }else{
-                            return '<p style="color:blue">'+(parseFloat(data.sumexam)/10-5)+'</p>';
+                            return '<p style="color:blue">'+(parseFloat(data.sumexam)/10-5).toFixed(2)+'</p>';
                         }
 
                     }}
